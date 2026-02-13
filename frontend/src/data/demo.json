@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "airline": "Indigo",
+    "from": "Delhi",
+    "to": "Bangalore",
+    "departure": "2026-02-14",
+    "travelClass": "Economy",
+    "duration": "2h 45m",
+    "stops": 0,
+    "price": 5200
+  },
+  {
+    "id": 2,
+    "airline": "Air India",
+    "from": "Delhi",
+    "to": "Bangalore",
+    "departure": "2026-02-14",
+    "travelClass": "Economy",
+    "duration": "3h 10m",
+    "stops": 1,
+    "price": 6100
+  },
+  {
+    "id": 3,
+    "airline": "Vistara",
+    "from": "Delhi",
+    "to": "Bangalore",
+    "departure": "2026-02-14",
+    "travelClass": "Business",
+    "duration": "2h 40m",
+    "stops": 0,
+    "price": 9800
+  }
+]
