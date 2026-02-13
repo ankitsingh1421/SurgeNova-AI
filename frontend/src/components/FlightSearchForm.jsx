@@ -1,59 +1,44 @@
 import { useState } from "react";
-import demoData from "../data/demo.json";
-import Results from "./Results";
+import { getPrediction } from "../services/api";
 
-function FlightSearchForm() {
+const FlightSearchForm = () => {
+  const [price, setPrice] = useState(null);
 
-  const [form, setForm] = useState({
-    from: "",
-    to: "",
-    departure: "",
-    travelClass: "Economy"
-  });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const [results, setResults] = useState([]);
+    const formData = {
+      transport_type: "flight",
+      active_users: 120,
+      search_count_last_1hr: 450,
+      booking_rate: 0.32,
+      available_inventory: 50,
+      total_inventory: 100,
+      cancellation_rate: 0.05,
+      day_of_week: 5,
+      is_weekend: 1,
+      is_holiday: 0,
+      time_to_event: 72,
+      distance_km: 500,
+      local_event_score: 0.6,
+      avg_competitor_price: 4200,
+      user_loyalty_score: 0.8
+    };
 
-  const handleSearch = () => {
-
-    // Filter local demo data
-    const filtered = demoData.filter((flight) =>
-      flight.from.toLowerCase() === form.from.toLowerCase() &&
-      flight.to.toLowerCase() === form.to.toLowerCase() &&
-      flight.travelClass === form.travelClass
-    );
-
-    setResults(filtered);
+    const predicted = await getPrediction(formData);
+    setPrice(predicted);
   };
 
   return (
     <div>
-      <input
-        placeholder="From"
-        onChange={(e) => setForm({ ...form, from: e.target.value })}
-      />
+      <h2>Flight Price Prediction</h2>
+      <button onClick={handleSubmit}>Predict Price</button>
 
-      <input
-        placeholder="To"
-        onChange={(e) => setForm({ ...form, to: e.target.value })}
-      />
-
-      <input
-        type="date"
-        onChange={(e) => setForm({ ...form, departure: e.target.value })}
-      />
-
-      <select
-        onChange={(e) => setForm({ ...form, travelClass: e.target.value })}
-      >
-        <option>Economy</option>
-        <option>Business</option>
-      </select>
-
-      <button onClick={handleSearch}>Search</button>
-
-      <Results results={results} />
+      {price && (
+        <h3>Predicted Price: ₹ {price}</h3>
+      )}
     </div>
   );
-}
+};
 
 export default FlightSearchForm;

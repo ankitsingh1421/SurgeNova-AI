@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FlightSearchForm from "../components/FlightSearchForm";
+import TrainSearchForm from "../components/TrainSearchForm";
 
 function Dashboard() {
   const [activeTab, setActiveTab] = useState("flights");
