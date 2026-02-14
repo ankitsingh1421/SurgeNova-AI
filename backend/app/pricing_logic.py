@@ -25,8 +25,8 @@ def predict_price(data):
 
     # Slight adjustment for flight
     if data.transport_type == "flight":
-        predicted_price *= 1.05
+        predicted_price *= 1.05  # 5% increase for flights
     elif data.transport_type == "train":
-        predicted_price *= .6
+        predicted_price *= .6 # 40% decrease for trains
 
     return round(float(predicted_price), 2)
